@@ -3,6 +3,20 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('/Users/zijian.liu/Documents/Files/android_learning/keystores/debug.keystore')
+            storePassword 'LZJ123lzj'
+            keyAlias 'debug00'
+            keyPassword 'LZJ123lzj'
+        }
+        release {
+            storeFile file('/Users/zijian.liu/Documents/Files/android_learning/keystores/release.keystores')
+            storePassword 'LZJ123lzj'
+            keyAlias 'release00'
+            keyPassword 'LZJ123lzj'
+        }
+    }
     compileSdk 31
 
     defaultConfig {
