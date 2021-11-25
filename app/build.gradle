@@ -2,19 +2,29 @@ plugins {
     id 'com.android.application'
 }
 
+// Create a variable called keystorePropertiesFile, and initialize it to your
+// keystore.properties file, in the rootProject folder.
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+
+// Initialize a new Properties() object called keystoreProperties.
+def keystoreProperties = new Properties()
+
+// Load your keystore.properties file into the keystoreProperties object.
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
     signingConfigs {
         debug {
-            storeFile file('/Users/zijian.liu/Documents/Files/android_learning/keystores/debug.keystore')
-            storePassword 'LZJ123lzj'
-            keyAlias 'debug00'
-            keyPassword 'LZJ123lzj'
+            storeFile file(keystoreProperties['storeFileDebug'])
+            storePassword keystoreProperties['storePasswordDebug']
+            keyAlias keystoreProperties['keyAliasDebug']
+            keyPassword keystoreProperties['keyPasswordDebug']
         }
         release {
-            storeFile file('/Users/zijian.liu/Documents/Files/android_learning/keystores/release.keystores')
-            storePassword 'LZJ123lzj'
-            keyAlias 'release00'
-            keyPassword 'LZJ123lzj'
+            storeFile file(keystoreProperties['storeFileRelease'])
+            storePassword keystoreProperties['storePasswordRelease']
+            keyAlias keystoreProperties['keyAliasRelease']
+            keyPassword keystoreProperties['keyPasswordRelease']
         }
     }
     compileSdk 31
