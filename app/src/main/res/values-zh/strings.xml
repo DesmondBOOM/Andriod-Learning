@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">你好</string>
-    <string name="bottom_1">按钮 1</string>
+    <string name="bottom_1">约束布局</string>
     <string name="bottom_2">按钮 2</string>
     <string name="bottom_3">按钮 3</string>
     <string name="bottom_4">按钮 4</string>
