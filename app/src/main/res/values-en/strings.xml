@@ -3,6 +3,13 @@
     <string name="bottom_1">button 1</string>
     <string name="bottom_2">button 2</string>
     <string name="bottom_3">button 3</string>
+    <string name="bottom_4">button 4</string>
+    <string name="bottom_5">button 5</string>
+    <string name="bottom_6">button 6</string>
+    <string name="bottom_7">button 7</string>
+    <string name="bottom_8">button 8</string>
+    <string name="bottom_9">button 9</string>
+    <string name="bottom_10">button 10</string>
     <string name="practice">Android Practice</string>
 
 </resources>
