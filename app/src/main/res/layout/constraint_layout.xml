@@ -7,6 +7,7 @@
         tools:context=".ConstraintActivity">
 
     <TextView
+            android:id="@+id/hello_github_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/hello_github"
@@ -16,6 +17,49 @@
             android:layout_marginStart="40dp"
             android:layout_marginEnd="40dp"
             android:layout_marginTop="40dp" />
+
+    <ImageView
+            android:id="@+id/github_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/github"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="@string/github" />
+
+    <Button
+            android:id="@+id/signup"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            app:layout_constraintWidth_default="spread"
+            android:text="@string/signup"
+            android:paddingVertical="10dp"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/github_icon"
+            app:layout_constraintStart_toStartOf="@+id/github_icon"
+            app:layout_constraintEnd_toEndOf="@+id/github_icon"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/gray"
+            android:layout_marginTop="70dp" />
+
+    <Button
+            android:id="@+id/login"
+            android:layout_width="0dp"
+            app:layout_constraintWidth_default="spread"
+            android:text="@string/login"
+            android:paddingVertical="10dp"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/signup"
+            app:layout_constraintStart_toStartOf="@+id/github_icon"
+            app:layout_constraintEnd_toEndOf="@+id/github_icon"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/gray"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
