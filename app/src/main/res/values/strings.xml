@@ -21,8 +21,8 @@
     <string name="remember_me">Remember me</string>
     <string name="forget_password">Forget password?</string>
     <string name="or_connect">or connect with</string>
-    <string name="facebook">facebook</string>
-    <string name="twitter">twitter</string>
+    <string name="facebook" translatable="false">facebook</string>
+    <string name="twitter" translatable="false">twitter</string>
     <string name="email_signup">Sign Up with E-mail</string>
 
 </resources>
