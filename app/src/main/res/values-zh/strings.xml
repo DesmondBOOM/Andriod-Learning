@@ -11,5 +11,6 @@
     <string name="bottom_9">按钮 9</string>
     <string name="bottom_10">按钮 10</string>
     <string name="practice">Android 练习</string>
+    <string name="hello_github">Hello!</string>
 
 </resources>

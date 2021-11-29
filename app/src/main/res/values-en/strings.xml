@@ -11,5 +11,6 @@
     <string name="bottom_9">button 9</string>
     <string name="bottom_10">button 10</string>
     <string name="practice">Android Practice</string>
+    <string name="hello_github">Hello!</string>
 
 </resources>
