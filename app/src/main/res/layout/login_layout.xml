@@ -55,7 +55,7 @@
             app:layout_constraintTop_toBottomOf="@id/password"
             app:layout_constraintStart_toStartOf="@id/password"
             android:layout_marginTop="15dp"
-            android:background="@drawable/login_edit_shape" />
+            android:background="@drawable/checkout_box_shape" />
 
     <TextView
             android:id="@+id/remember"
@@ -81,5 +81,20 @@
             android:textColor="#222222"
             android:textSize="12sp"
             android:textStyle="normal" />
+
+    <Button
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            app:layout_constraintStart_toStartOf="@id/password"
+            app:layout_constraintEnd_toEndOf="@id/password"
+            app:layout_constraintTop_toBottomOf="@id/remember"
+            android:layout_marginTop="22.5dp"
+            android:textAllCaps="false"
+            android:text="@string/login"
+            android:background="@drawable/login_button_shape"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
