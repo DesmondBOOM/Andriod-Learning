@@ -19,5 +19,6 @@
     <string name="password">Password</string>
     <string name="remember_me">Remember me</string>
     <string name="forget_password">Forget password?</string>
+    <string name="or_connect">or connect with</string>
 
 </resources>
