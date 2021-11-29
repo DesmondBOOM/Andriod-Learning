@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Hello</string>
     <string name="bottom_1">constraint layout</string>
-    <string name="bottom_2">button 2</string>
+    <string name="bottom_2">login</string>
     <string name="bottom_3">button 3</string>
     <string name="bottom_4">button 4</string>
     <string name="bottom_5">button 5</string>
