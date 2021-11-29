@@ -14,5 +14,10 @@
     <string name="hello_github">Hello!</string>
     <string name="signup">Sign Up</string>
     <string name="login">Login</string>
+    <string name="aware_icon_desp">aware icon</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="remember_me">Remember me</string>
+    <string name="forget_password">Forget password?</string>
 
 </resources>

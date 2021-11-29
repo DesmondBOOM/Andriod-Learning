@@ -11,8 +11,12 @@
     <string name="bottom_9">按钮 9</string>
     <string name="bottom_10">按钮 10</string>
     <string name="practice">Android 练习</string>
-    <string name="hello_github">Hello!</string>
-    <string name="signup">Sign Up</string>
-    <string name="login">Login</string>
+    <string name="hello_github">您好!</string>
+    <string name="signup">注册</string>
+    <string name="login">登陆</string>
+    <string name="username">用户名</string>
+    <string name="password">密码</string>
+    <string name="remember_me">Remember me</string>
+    <string name="forget_password">Forget password?</string>
 
 </resources>
