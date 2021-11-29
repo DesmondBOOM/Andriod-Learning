@@ -128,4 +128,18 @@
             android:src="@drawable/tw"
             android:contentDescription="@string/twitter" />
 
+    <Button
+            android:id="@+id/signup_with_email"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            app:layout_constraintStart_toStartOf="@id/login_button"
+            app:layout_constraintEnd_toEndOf="@id/login_button"
+            app:layout_constraintTop_toBottomOf="@id/facebook_button"
+            android:layout_marginTop="85.5dp"
+            android:textAllCaps="false"
+            android:text="@string/email_signup"
+            android:background="@drawable/email_signup_shape"
+            android:textColor="#1f4ba5"
+            android:textSize="12sp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,5 +23,6 @@
     <string name="or_connect">or connect with</string>
     <string name="facebook">facebook</string>
     <string name="twitter">twitter</string>
+    <string name="email_signup">Sign Up with E-mail</string>
 
 </resources>
