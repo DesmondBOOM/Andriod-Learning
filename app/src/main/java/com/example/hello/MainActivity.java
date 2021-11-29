@@ -1,5 +1,6 @@
 package com.example.hello;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -23,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openConstraintLayout() {
-
+        Intent intent = new Intent(this, ConstraintActivity.class);
+        startActivity(intent);
     }
 
 }
