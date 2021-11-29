@@ -23,6 +23,7 @@
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:orientation="vertical">
 
             <Button
@@ -62,19 +63,6 @@
                     android:layout_marginVertical="5dp"
                     android:layout_height="wrap_content"
                     android:text="@string/bottom_3"
-                    android:textAllCaps="false"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"
-                    android:backgroundTint="@color/gray" />
-            <Button
-                    android:id="@+id/button_4"
-                    android:layout_gravity="center"
-                    android:layout_marginHorizontal="50dp"
-                    android:layout_width="match_parent"
-                    android:paddingVertical="10dp"
-                    android:layout_marginVertical="5dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/bottom_4"
                     android:textAllCaps="false"
                     android:textSize="20sp"
                     android:textColor="@color/black"
