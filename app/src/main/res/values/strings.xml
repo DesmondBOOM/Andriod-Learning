@@ -17,5 +17,6 @@
     <string name="login">Login</string>
     <string name="aware_icon_desp">aware icon</string>
     <string name="username">Username</string>
+    <string name="password">password</string>
 
 </resources>
