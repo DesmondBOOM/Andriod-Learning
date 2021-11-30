@@ -21,5 +21,7 @@
     <string name="or_connect">其它方式登陆</string>
     <string name="email_signup">使用邮件登陆</string>
     <string name="android">Android</string>
+    <string name="android_content">"Android is a mobile operating system based on a modified version of the Linux kernel and other open source software, designed primarily for touchscreen mobile devices such as smartphones and tablets. "</string>
+    <string name="java_content">"Java is a High Level, class-based, object-oriented programming language that is designed to have as few implementation dependencies as possible. "</string>
 
 </resources>
