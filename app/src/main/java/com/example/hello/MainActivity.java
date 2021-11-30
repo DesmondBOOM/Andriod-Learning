@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     Button button_1;
     Button button_2;
     Button button_3;
+    Button button_4;
 
     public static final String TAG = "MainActivity";
 
@@ -27,14 +28,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d(TAG, "this is main activity");
 
-        button_1 = (Button) findViewById(R.id.button_1);
+        button_1 = findViewById(R.id.button_1);
         button_1.setOnClickListener(v -> openConstraintActivity());
 
-        button_2 = (Button) findViewById(R.id.button_2);
+        button_2 = findViewById(R.id.button_2);
         button_2.setOnClickListener(v -> openLoginActivity());
 
-        button_3 = (Button) findViewById(R.id.button_3);
+        button_3 = findViewById(R.id.button_3);
         button_3.setOnClickListener(v -> openPickUpContact());
+
+        button_4 = findViewById(R.id.button_4);
+        button_4.setOnClickListener(v -> openFragmentActivity());
+    }
+
+    private void openFragmentActivity() {
+        Intent intent = new Intent(this, MyFragmentActivity.class);
+        startActivity(intent);
     }
 
     private void openPickUpContact() {

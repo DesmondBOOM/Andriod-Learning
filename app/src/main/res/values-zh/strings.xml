@@ -3,7 +3,7 @@
     <string name="bottom_1">约束布局</string>
     <string name="bottom_2">登陆</string>
     <string name="bottom_3">查询联系人</string>
-    <string name="bottom_4">按钮 4</string>
+    <string name="bottom_4">Fragment</string>
     <string name="bottom_5">按钮 5</string>
     <string name="bottom_6">按钮 6</string>
     <string name="bottom_7">按钮 7</string>
@@ -20,5 +20,6 @@
     <string name="forget_password">忘了密码?</string>
     <string name="or_connect">其它方式登陆</string>
     <string name="email_signup">使用邮件登陆</string>
+    <string name="android">Android</string>
 
 </resources>

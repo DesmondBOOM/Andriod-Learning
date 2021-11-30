@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         package="com.example.hello">
-
-    <!--增加权限-->
+    <!-- 增加权限 -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
@@ -14,12 +13,20 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+                android:name=".MyFragmentActivity"
+                android:exported="false" />
+        <activity
                 android:name=".PickUpContactActivity"
-                android:exported="false" >
+                android:exported="false">
             <intent-filter>
-                <action android:name="android.intent.action.PICK"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:scheme="content" android:host="contacts" android:mimeType="vnd.android.cursor.dir/phone_v2"/>
+                <action android:name="android.intent.action.PICK" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                        android:host="contacts"
+                        android:mimeType="vnd.android.cursor.dir/phone_v2"
+                        android:scheme="content" />
             </intent-filter>
         </activity>
         <activity

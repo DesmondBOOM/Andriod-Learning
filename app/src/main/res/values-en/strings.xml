@@ -3,7 +3,7 @@
     <string name="bottom_1">constraint layout</string>
     <string name="bottom_2">login</string>
     <string name="bottom_3">pick contact</string>
-    <string name="bottom_4">button 4</string>
+    <string name="bottom_4">fragment</string>
     <string name="bottom_5">button 5</string>
     <string name="bottom_6">button 6</string>
     <string name="bottom_7">button 7</string>
@@ -21,5 +21,6 @@
     <string name="forget_password">Forget password?</string>
     <string name="or_connect">or connect with</string>
     <string name="email_signup">Sign Up with E-mail</string>
+    <string name="android">Android</string>
 
 </resources>
