@@ -17,7 +17,7 @@
                 android:name=".PickUpContactActivity"
                 android:exported="false" >
             <intent-filter>
-                <action android:name="com.hello.PICKUP"/>
+                <action android:name="android.intent.action.PICK"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <data android:scheme="content" android:host="contacts" android:mimeType="vnd.android.cursor.dir/phone_v2"/>
             </intent-filter>

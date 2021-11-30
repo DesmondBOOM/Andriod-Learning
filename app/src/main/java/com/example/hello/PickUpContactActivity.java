@@ -1,10 +1,9 @@
 package com.example.hello;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class PickUpContactActivity extends AppCompatActivity {
 
@@ -17,15 +16,6 @@ public class PickUpContactActivity extends AppCompatActivity {
         Log.d(TAG, "on create");
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if(requestCode == PICK_CONTACT_REQUEST && resultCode == RESULT_OK) {
-//            Cursor cursor = getContentResolver().query(data.getData(), new String[]{"display_name", "data1"}, null, null, null);
-//            cursor.moveToNext();
-//            String contactName = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-//            String phoneNum = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-//            cursor.close();
-//            Toast.makeText(this, contactName + " " + phoneNum, Toast.LENGTH_SHORT).show();
-//        }
-//    }
+
+
 }

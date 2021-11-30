@@ -2,16 +2,19 @@ package com.example.hello;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int PICK_CONTACT_REQUEST = 0;
+    private static final int PICK_CONTACT_REQUEST = 1;
     Button button_1;
     Button button_2;
     Button button_3;
@@ -34,9 +37,8 @@ public class MainActivity extends AppCompatActivity {
         button_3.setOnClickListener(v -> openPickUpContact());
     }
 
-    @SuppressLint("IntentReset")
     private void openPickUpContact() {
-        Intent intent = new Intent("com.hello.PICKUP");
+        Intent intent = new Intent("android.intent.action.PICK");
         intent.setDataAndType(Uri.parse("content://contacts"), "vnd.android.cursor.dir/phone_v2");
         startActivityForResult(intent, PICK_CONTACT_REQUEST);
     }
@@ -49,6 +51,21 @@ public class MainActivity extends AppCompatActivity {
     private void openLoginActivity() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_CONTACT_REQUEST && resultCode == RESULT_OK) {
+            Cursor cursor = getContentResolver().query(data.getData(), new String[]{"display_name", "data1"}, null, null, null);
+            cursor.moveToNext();
+            @SuppressLint("Range")
+            String contactName = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+            @SuppressLint("Range")
+            String phoneNum = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+            cursor.close();
+            Toast.makeText(this, contactName + " " + phoneNum, Toast.LENGTH_SHORT).show();
+        }
     }
 
 }
