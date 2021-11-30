@@ -1,6 +1,8 @@
 package com.example.hello;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -9,8 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int PICK_CONTACT_REQUEST = 0;
     Button button_1;
     Button button_2;
+    Button button_3;
 
     public static final String TAG = "MainActivity";
 
@@ -25,6 +29,16 @@ public class MainActivity extends AppCompatActivity {
 
         button_2 = (Button) findViewById(R.id.button_2);
         button_2.setOnClickListener(v -> openLoginActivity());
+
+        button_3 = (Button) findViewById(R.id.button_3);
+        button_3.setOnClickListener(v -> openPickUpContact());
+    }
+
+    @SuppressLint("IntentReset")
+    private void openPickUpContact() {
+        Intent intent = new Intent("com.hello.PICKUP");
+        intent.setDataAndType(Uri.parse("content://contacts"), "vnd.android.cursor.dir/phone_v2");
+        startActivityForResult(intent, PICK_CONTACT_REQUEST);
     }
 
     private void openConstraintActivity() {
