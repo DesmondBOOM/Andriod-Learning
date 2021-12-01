@@ -23,6 +23,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,7 +44,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
         RecyclerView tweetRecyclerView = findViewById(R.id.tweet_recycler);
 
         try {
-            InputStreamReader inputStreamReader = new InputStreamReader(getAssets().open("tweet_info.json"),"UTF-8");
+            InputStreamReader inputStreamReader = new InputStreamReader(getAssets().open("tweet_info.json"), StandardCharsets.UTF_8);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
             String line;
@@ -65,17 +66,6 @@ public class RecyclerViewActivity extends AppCompatActivity {
         TweetsAdapter adapter = new TweetsAdapter(tweetList);
         tweetRecyclerView.setAdapter(adapter);
         tweetRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        tweetRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-
-                if (!tweetRecyclerView.canScrollVertically(1)) {
-
-                }
-            }
-        });
 
     }
 }

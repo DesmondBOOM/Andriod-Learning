@@ -14,7 +14,7 @@ import com.example.hello.data.model.Tweet;
 
 import java.util.List;
 
-public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder> {
+public class TweetsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int sITEM_TYPE_NORMAL = 0;
     private static final int sITEM_TYPE_HEADER = 1;
@@ -27,30 +27,51 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         this.tweetList = tweetList;
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        if (position == getItemCount() - 1) {
+            return sITEM_TYPE_FOOTER;
+        }
+        return sITEM_TYPE_NORMAL;
+    }
+
     // Usually involves inflating a layout from XML and returning the holder
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
         View tweetView = inflater.inflate(R.layout.recycler_custom_row, parent, false);
+        View footerBarView = inflater.inflate(R.layout.recycler_footer_bar_layout, parent, false);
 
-        return new ViewHolder(tweetView);
+        if (viewType == sITEM_TYPE_FOOTER) {
+            return new FooterViewHolder(footerBarView);
+        } else {
+            return new TweetViewHolder(tweetView);
+        }
     }
+
 
     // Involves populating data into the item through holder
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        int type = getItemViewType(position);
+
+        if (type == sITEM_TYPE_HEADER || type == sITEM_TYPE_FOOTER) {
+            return;
+        }
+
         // Get the data model based on position
         Tweet tweet = tweetList.get(position);
 
-        // Set item views based on your views and data model
         String name = tweet.getSender() == null ? "" : tweet.getSender().getNick();
-        holder.senderName.setText(name);
+        // Set item views based on your views and data model
+        ((TweetViewHolder) holder).senderName.setText(name);
         String content = tweet.getContent() == null ? "" : tweet.getContent();
-        holder.contentText.setText(content);
+        ((TweetViewHolder) holder).contentText.setText(content);
+
     }
 
     // Returns the total count of items in the list
@@ -60,14 +81,20 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     }
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class TweetViewHolder extends RecyclerView.ViewHolder {
         public TextView senderName;
         public TextView contentText;
 
-        public ViewHolder(@NonNull View itemView) {
+        public TweetViewHolder(@NonNull View itemView) {
             super(itemView);
             senderName = itemView.findViewById(R.id.tweet_sender);
             contentText = itemView.findViewById(R.id.tweet_content);
+        }
+    }
+
+    public static class FooterViewHolder extends RecyclerView.ViewHolder {
+        public FooterViewHolder(@NonNull View itemView) {
+            super(itemView);
         }
     }
 }

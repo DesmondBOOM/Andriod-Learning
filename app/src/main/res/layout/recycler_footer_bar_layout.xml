@@ -12,7 +12,6 @@
             android:layout_height="wrap_content"
             android:text="@string/footer_hint"
             android:textStyle="bold"
-            android:textSize="20sp"
-        />
+            android:textSize="20sp" />
 
 </LinearLayout>
