@@ -14,20 +14,6 @@
         <activity
                 android:name=".MyFragmentActivity"
                 android:exported="false" />
-<!--        <activity-->
-<!--                android:name=".PickUpContactActivity"-->
-<!--                android:exported="false">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.PICK" />-->
-
-<!--                <category android:name="android.intent.category.DEFAULT" />-->
-
-<!--                <data-->
-<!--                        android:host="contacts"-->
-<!--                        android:mimeType="vnd.android.cursor.dir/phone_v2"-->
-<!--                        android:scheme="content" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
         <activity
                 android:name=".LoginActivity"
                 android:exported="false" />
