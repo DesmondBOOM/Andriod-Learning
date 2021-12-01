@@ -7,12 +7,13 @@
 
     <ImageView
             android:id="@+id/tweet_head_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
+            android:src="@drawable/avatar"
             android:background="@color/gray"
             android:contentDescription="@string/tweet_head_image" />
 
@@ -24,6 +25,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tweet_head_image"
             android:background="@color/gray"
+            android:textSize="12sp"
             android:layout_marginEnd="10dp"
             android:textStyle="bold"
             android:layout_marginStart="20dp" />
@@ -36,6 +38,7 @@
             app:layout_constraintStart_toEndOf="@+id/tweet_head_image"
             app:layout_constraintTop_toBottomOf="@id/tweet_sender"
             android:background="@color/gray"
+            android:textSize="12sp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginStart="20dp" />

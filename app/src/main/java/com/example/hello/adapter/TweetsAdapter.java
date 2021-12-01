@@ -12,20 +12,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hello.R;
-import com.example.hello.model.Tweet;
+import com.example.hello.data.model.Tweet;
 
 import java.util.List;
 
 public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder> {
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView headImage;
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView senderName;
         public TextView contentText;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            headImage = itemView.findViewById(R.id.tweet_head_image);
             senderName = itemView.findViewById(R.id.tweet_sender);
             contentText = itemView.findViewById(R.id.tweet_content);
         }
@@ -56,7 +54,6 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         Tweet tweet = tweetList.get(position);
 
         // Set item views based on your views and data model
-        holder.headImage.setImageURI(Uri.parse(tweet.getSender().getAvatar()));
         holder.senderName.setText(tweet.getSender().getUserName());
         holder.contentText.setText(tweet.getContent());
     }

@@ -1,4 +1,4 @@
-package com.example.hello.model;
+package com.example.hello.data.model;
 
 import com.google.gson.annotations.SerializedName;
 
