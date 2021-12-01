@@ -1,6 +1,8 @@
 package com.example.hello;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -63,6 +65,17 @@ public class RecyclerViewActivity extends AppCompatActivity {
         TweetsAdapter adapter = new TweetsAdapter(tweetList);
         tweetRecyclerView.setAdapter(adapter);
         tweetRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        tweetRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                if (!tweetRecyclerView.canScrollVertically(1)) {
+
+                }
+            }
+        });
 
     }
 }
