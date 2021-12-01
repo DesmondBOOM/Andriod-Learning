@@ -12,8 +12,8 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
             android:src="@drawable/avatar"
             android:background="@color/gray"
             android:contentDescription="@string/tweet_head_image" />
