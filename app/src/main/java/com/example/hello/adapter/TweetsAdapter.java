@@ -18,17 +18,6 @@ import java.util.List;
 
 public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder> {
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView senderName;
-        public TextView contentText;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            senderName = itemView.findViewById(R.id.tweet_sender);
-            contentText = itemView.findViewById(R.id.tweet_content);
-        }
-    }
-
     List<Tweet> tweetList;
 
     public TweetsAdapter(List<Tweet> tweetList) {
@@ -54,13 +43,27 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         Tweet tweet = tweetList.get(position);
 
         // Set item views based on your views and data model
-        holder.senderName.setText(tweet.getSender().getUserName());
-        holder.contentText.setText(tweet.getContent());
+        String name = tweet.getSender() == null ? "" : tweet.getSender().getNick();
+        holder.senderName.setText(name);
+        String content = tweet.getContent() == null ? "" : tweet.getContent();
+        holder.contentText.setText(content);
     }
 
     // Returns the total count of items in the list
     @Override
     public int getItemCount() {
         return tweetList.size();
+    }
+
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView senderName;
+        public TextView contentText;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            senderName = itemView.findViewById(R.id.tweet_sender);
+            contentText = itemView.findViewById(R.id.tweet_content);
+        }
     }
 }

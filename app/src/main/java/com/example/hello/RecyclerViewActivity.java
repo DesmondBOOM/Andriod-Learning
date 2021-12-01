@@ -23,6 +23,8 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class RecyclerViewActivity extends AppCompatActivity {
 
@@ -57,7 +59,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
+        tweetList = tweetList.stream().filter(tweet -> tweet.getError() == null && tweet.getUnknownError() == null).collect(Collectors.toList());
         TweetsAdapter adapter = new TweetsAdapter(tweetList);
         tweetRecyclerView.setAdapter(adapter);
         tweetRecyclerView.setLayoutManager(new LinearLayoutManager(this));
