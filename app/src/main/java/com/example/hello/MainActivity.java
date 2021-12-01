@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     Button button_2;
     Button button_3;
     Button button_4;
+    Button button_5;
 
     public static final String TAG = "MainActivity";
 
@@ -39,6 +40,14 @@ public class MainActivity extends AppCompatActivity {
 
         button_4 = findViewById(R.id.button_4);
         button_4.setOnClickListener(v -> openFragmentActivity());
+
+        button_5 = findViewById(R.id.button_5);
+        button_5.setOnClickListener(v -> openRecyclerViewActivity());
+
+    }
+
+    private void openRecyclerViewActivity() {
+        startActivity(new Intent(this, RecyclerViewActivity.class));
     }
 
     private void openFragmentActivity() {
