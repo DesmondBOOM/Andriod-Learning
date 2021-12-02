@@ -12,6 +12,9 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+                android:name=".ThreadActivity"
+                android:exported="false" />
+        <activity
                 android:name=".RecyclerViewActivity"
                 android:exported="false" />
         <activity

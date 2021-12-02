@@ -5,7 +5,7 @@
     <string name="bottom_3">pick contact</string>
     <string name="bottom_4">fragment</string>
     <string name="bottom_5">recycler view</string>
-    <string name="bottom_6">button 6</string>
+    <string name="bottom_6">thread</string>
     <string name="bottom_7">button 7</string>
     <string name="bottom_8">button 8</string>
     <string name="bottom_9">button 9</string>
@@ -30,5 +30,6 @@
     <string name="java_content">"Java is a High Level, class-based, object-oriented programming language that is designed to have as few implementation dependencies as possible. "</string>
     <string name="tweet_head_image">tweet head image</string>
     <string name="footer_hint">The END</string>
+    <string name="thread">Thread</string>
 
 </resources>
