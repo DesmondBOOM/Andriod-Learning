@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     Button button_3;
     Button button_4;
     Button button_5;
+    Button button_6;
 
     public static final String TAG = "MainActivity";
 
@@ -44,6 +45,13 @@ public class MainActivity extends AppCompatActivity {
         button_5 = findViewById(R.id.button_5);
         button_5.setOnClickListener(v -> openRecyclerViewActivity());
 
+        button_6 = findViewById(R.id.button_6);
+        button_6.setOnClickListener(v -> openThreadActivity());
+
+    }
+
+    private void openThreadActivity() {
+        startActivity(new Intent(this, ThreadActivity.class));
     }
 
     private void openRecyclerViewActivity() {
