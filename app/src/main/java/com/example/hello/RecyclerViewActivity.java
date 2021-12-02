@@ -54,7 +54,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
         }
 
         tweetList = tweetList.stream().filter(tweet -> tweet.getError() == null && tweet.getUnknownError() == null).collect(Collectors.toList());
-        TweetsAdapter adapter = new TweetsAdapter(tweetList);
+        TweetsAdapter adapter = new TweetsAdapter(tweetList, getApplicationContext());
         tweetRecyclerView.setAdapter(adapter);
         tweetRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 

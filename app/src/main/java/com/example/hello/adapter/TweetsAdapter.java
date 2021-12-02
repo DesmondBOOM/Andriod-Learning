@@ -4,11 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.hello.R;
 import com.example.hello.data.model.Tweet;
 
@@ -21,10 +23,12 @@ public class TweetsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private static final int sITEM_TYPE_FOOTER = 2;
     private static final int sITEM_TYPE_EMPTY = 3;
 
-    List<Tweet> tweetList;
+    List<Tweet> mTweetList;
+    Context mContext;
 
-    public TweetsAdapter(List<Tweet> tweetList) {
-        this.tweetList = tweetList;
+    public TweetsAdapter(List<Tweet> mTweetList, Context mContext) {
+        this.mTweetList = mTweetList;
+        this.mContext = mContext;
     }
 
     @Override
@@ -64,20 +68,18 @@ public class TweetsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
 
         // Get the data model based on position
-        Tweet tweet = tweetList.get(position);
+        Tweet tweet = mTweetList.get(position);
 
-        String name = tweet.getSender() == null ? "" : tweet.getSender().getNick();
         // Set item views based on your views and data model
-        ((TweetViewHolder) holder).senderName.setText(name);
-        String content = tweet.getContent() == null ? "" : tweet.getContent();
-        ((TweetViewHolder) holder).contentText.setText(content);
-
+        ((TweetViewHolder) holder).senderName.setText(tweet.getSender() == null ? "" : tweet.getSender().getNick());
+        ((TweetViewHolder) holder).contentText.setText(tweet.getContent() == null ? "" : tweet.getContent());
+        Glide.with(mContext).load(tweet.getSender().getAvatar()).into(((TweetViewHolder) holder).senderAvatar);
     }
 
     // Returns the total count of items in the list
     @Override
     public int getItemCount() {
-        return tweetList.size();
+        return mTweetList.size();
     }
 
 
@@ -85,10 +87,13 @@ public class TweetsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         public TextView senderName;
         public TextView contentText;
 
+        public ImageView senderAvatar;
+
         public TweetViewHolder(@NonNull View itemView) {
             super(itemView);
             senderName = itemView.findViewById(R.id.tweet_sender);
             contentText = itemView.findViewById(R.id.tweet_content);
+            senderAvatar = itemView.findViewById(R.id.tweet_avatar);
         }
     }
 

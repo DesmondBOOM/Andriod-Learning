@@ -12,6 +12,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final int PICK_CONTACT_REQUEST = 1;
@@ -23,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     Button button_6;
 
     public static final String TAG = "MainActivity";
+
+    OkHttpClient client = new OkHttpClient();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
