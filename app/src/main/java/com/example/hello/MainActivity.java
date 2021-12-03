@@ -29,13 +29,14 @@ public class MainActivity extends AppCompatActivity {
     Button button_6;
     Button button_7;
 
-    public static final String TAG = "MainActivity";
+    public static final String TAG = "[MainActivity]";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "this is main activity");
+        Log.d(TAG, "thread : " + Thread.currentThread().getId());
 
         button_1 = findViewById(R.id.button_1);
         button_1.setOnClickListener(v -> openConstraintActivity());

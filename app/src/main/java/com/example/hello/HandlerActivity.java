@@ -3,7 +3,6 @@ package com.example.hello;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.AsyncQueryHandler;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -19,7 +18,7 @@ public class HandlerActivity extends AppCompatActivity {
     Button button_second;
 
     HandlerThread handlerThread = new HandlerThread("handler_thread");
-    ExampleHandler handler;
+    ExampleHandler exampleHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +26,9 @@ public class HandlerActivity extends AppCompatActivity {
         setContentView(R.layout.handler_layout);
 
         handlerThread.start();
-        handler = new ExampleHandler(handlerThread.getLooper());
-
+        exampleHandler = new ExampleHandler(handlerThread.getLooper());
+        Log.d("[HandlerActivity]", "handlerThread id = " + handlerThread.getId());
         initUI();
-
     }
 
     private void initUI() {
@@ -49,10 +47,10 @@ public class HandlerActivity extends AppCompatActivity {
     private void sendMessage(int msgIndex) {
         new Thread(() -> {
             Log.d("[HandlerActivity]", "sendMessage, megIndex : " + msgIndex);
-            Log.d("[HandlerActivity]", "sendMessage, thread : " + Thread.currentThread().getName());
-            Message message = handler.obtainMessage();
+            Log.d("[HandlerActivity]", "sendMessage, thread id : " + Thread.currentThread().getId());
+            Message message = exampleHandler.obtainMessage();
             message.what = msgIndex;
-            handler.sendMessage(message);
+            exampleHandler.sendMessage(message);
         }).start();
     }
 
@@ -67,7 +65,7 @@ public class HandlerActivity extends AppCompatActivity {
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
-            Log.d("[ExampleHandler] handleMessage", "Thread : " + Thread.currentThread().getName());
+            Log.d("[ExampleHandler] handleMessage", "Thread : " + Thread.currentThread().getId());
             Log.d("[ExampleHandler] handleMessage", "message : " + msg.toString());
             ShowMessage showMessage = new ShowMessage(msg);
             runOnUiThread(showMessage);
@@ -83,6 +81,7 @@ public class HandlerActivity extends AppCompatActivity {
 
             @Override
             public void run() {
+                Log.d("[ShowMessage] run", "Thread : " + Thread.currentThread().getId());
                 Toast.makeText(HandlerActivity.this, String.valueOf(index), Toast.LENGTH_SHORT).show();
             }
         }
