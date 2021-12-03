@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     Button button_4;
     Button button_5;
     Button button_6;
+    Button button_7;
 
     public static final String TAG = "MainActivity";
 
@@ -54,6 +55,13 @@ public class MainActivity extends AppCompatActivity {
         button_6 = findViewById(R.id.button_6);
         button_6.setOnClickListener(v -> openThreadActivity());
 
+        button_7 = findViewById(R.id.button_7);
+        button_7.setOnClickListener(v -> openHandlerActivity());
+
+    }
+
+    private void openHandlerActivity() {
+        startActivity(new Intent(this, HandlerActivity.class));
     }
 
     private void openThreadActivity() {
