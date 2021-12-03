@@ -31,5 +31,7 @@
     <string name="tweet_head_image">tweet head image</string>
     <string name="footer_hint">The END</string>
     <string name="thread">Thread</string>
+    <string name="first">First</string>
+    <string name="second">Second</string>
 
 </resources>
