@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     Button button_5;
     Button button_6;
     Button button_7;
+    Button button_8;
 
     public static final String TAG = "[MainActivity]";
 
@@ -59,6 +60,13 @@ public class MainActivity extends AppCompatActivity {
         button_7 = findViewById(R.id.button_7);
         button_7.setOnClickListener(v -> openHandlerActivity());
 
+        button_8 = findViewById(R.id.button_8);
+        button_8.setOnClickListener(v -> openRxjavaActivity());
+
+    }
+
+    private void openRxjavaActivity() {
+        startActivity(new Intent(this, RxjavaActivity.class));
     }
 
     private void openHandlerActivity() {
@@ -74,8 +82,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openFragmentActivity() {
-        Intent intent = new Intent(this, MyFragmentActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, MyFragmentActivity.class));
     }
 
     private void openPickUpContact() {
@@ -85,13 +92,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openConstraintActivity() {
-        Intent intent = new Intent(this, ConstraintActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, ConstraintActivity.class));
     }
 
     private void openLoginActivity() {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, LoginActivity.class));
     }
 
     @Override
