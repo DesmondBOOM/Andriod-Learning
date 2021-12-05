@@ -7,7 +7,7 @@
     <string name="bottom_5">recycler view</string>
     <string name="bottom_6">thread</string>
     <string name="bottom_7">handler</string>
-    <string name="bottom_8">button 8</string>
+    <string name="bottom_8">rxjava</string>
     <string name="bottom_9">button 9</string>
     <string name="bottom_10">button 10</string>
     <string name="practice">Android Practice</string>
@@ -25,13 +25,14 @@
     <string name="twitter" translatable="false">twitter</string>
     <string name="email_signup">Sign Up with E-mail</string>
     <string name="android">Android</string>
-    <string name="java">Java</string>
+    <string name="java" translatable="false">Java</string>
     <string name="android_content">"Android is a mobile operating system based on a modified version of the Linux kernel and other open source software, designed primarily for touchscreen mobile devices such as smartphones and tablets. "</string>
     <string name="java_content">"Java is a High Level, class-based, object-oriented programming language that is designed to have as few implementation dependencies as possible. "</string>
-    <string name="tweet_head_image">tweet head image</string>
+    <string name="tweet_head_image" translatable="false">tweet head image</string>
     <string name="footer_hint">The END</string>
-    <string name="thread">Thread</string>
+    <string name="thread" translatable="false">Thread</string>
     <string name="first">First</string>
     <string name="second">Second</string>
+    <string name="rxjava" translatable="false">rxjava</string>
 
 </resources>
