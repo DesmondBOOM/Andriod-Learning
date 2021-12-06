@@ -12,9 +12,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.hello.utils.SharedPreferencesUtils;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final int PICK_CONTACT_REQUEST = 1;
+    public static final String IS_KNOWN = "isKnown";
     Button button_1;
     Button button_2;
     Button button_3;
@@ -37,31 +40,29 @@ public class MainActivity extends AppCompatActivity {
         initUI();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SharedPreferencesUtils.writeSpBoolean(this, IS_KNOWN, false);
+    }
+
     private void initUI() {
         button_1 = findViewById(R.id.button_1);
         button_1.setOnClickListener(v -> openConstraintActivity());
-
         button_2 = findViewById(R.id.button_2);
         button_2.setOnClickListener(v -> openLoginActivity());
-
         button_3 = findViewById(R.id.button_3);
         button_3.setOnClickListener(v -> openPickUpContact());
-
         button_4 = findViewById(R.id.button_4);
         button_4.setOnClickListener(v -> openFragmentActivity());
-
         button_5 = findViewById(R.id.button_5);
         button_5.setOnClickListener(v -> openRecyclerViewActivity());
-
         button_6 = findViewById(R.id.button_6);
         button_6.setOnClickListener(v -> openThreadActivity());
-
         button_7 = findViewById(R.id.button_7);
         button_7.setOnClickListener(v -> openHandlerActivity());
-
         button_8 = findViewById(R.id.button_8);
         button_8.setOnClickListener(v -> openRxjavaActivity());
-
         button_9 = findViewById(R.id.button_9);
         button_9.setOnClickListener(v -> openSpActivity());
     }
