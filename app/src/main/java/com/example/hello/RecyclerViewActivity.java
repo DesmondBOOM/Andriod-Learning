@@ -34,6 +34,18 @@ public class RecyclerViewActivity extends AppCompatActivity {
         // Lookup the recyclerview in activity layout
         RecyclerView tweetRecyclerView = findViewById(R.id.tweet_recycler);
 
+        tweetList = getTweetsFromAssets();
+
+        tweetList = tweetList.stream().filter(tweet -> tweet.getError() == null && tweet.getUnknownError() == null).collect(Collectors.toList());
+        TweetsAdapter adapter = new TweetsAdapter(tweetList, getApplicationContext());
+        tweetRecyclerView.setAdapter(adapter);
+        tweetRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+    }
+
+    private List<Tweet> getTweetsFromAssets() {
+        List<Tweet> tweets = new ArrayList<>();
+
         try {
             InputStreamReader inputStreamReader = new InputStreamReader(getAssets().open("tweet_info.json"), StandardCharsets.UTF_8);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
@@ -47,16 +59,12 @@ public class RecyclerViewActivity extends AppCompatActivity {
             inputStreamReader.close();
             String jsonString = stringBuilder.toString();
 
-            tweetList = gson.fromJson(jsonString, new TypeToken<List<Tweet>>() {}.getType());
+            tweets = gson.fromJson(jsonString, new TypeToken<List<Tweet>>() {}.getType());
+            return tweets;
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        tweetList = tweetList.stream().filter(tweet -> tweet.getError() == null && tweet.getUnknownError() == null).collect(Collectors.toList());
-        TweetsAdapter adapter = new TweetsAdapter(tweetList, getApplicationContext());
-        tweetRecyclerView.setAdapter(adapter);
-        tweetRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        return tweets;
     }
 }

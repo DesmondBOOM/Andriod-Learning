@@ -6,7 +6,15 @@ import androidx.room.Room;
 
 import com.example.hello.data.model.Tweet;
 import com.example.hello.data.source.local.room.AppDatabase;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Flowable;
@@ -23,7 +31,29 @@ public class LocalStorageImpl implements LocalStorage{
 
     @Override
     public List<Tweet> getTweetsFromAssets() {
-        return null;
+        List<Tweet> tweets = new ArrayList<>();
+
+        try {
+            InputStreamReader inputStreamReader = new InputStreamReader(context.getAssets().open("tweet_info.json"), StandardCharsets.UTF_8);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+            String line;
+            StringBuilder stringBuilder = new StringBuilder();
+            while((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+            bufferedReader.close();
+            inputStreamReader.close();
+            String jsonString = stringBuilder.toString();
+
+            Gson gson = new GsonBuilder().create();
+            tweets = gson.fromJson(jsonString, new TypeToken<List<Tweet>>() {}.getType());
+            return tweets;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return tweets;
     }
 
     @Override
