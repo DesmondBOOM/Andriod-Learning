@@ -1,6 +1,7 @@
 package com.example.hello.data.source.local;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.room.Room;
 
@@ -13,6 +14,7 @@ import com.example.hello.data.source.local.room.model.CommentEntity;
 import com.example.hello.data.source.local.room.model.ImageEntity;
 import com.example.hello.data.source.local.room.model.SenderEntity;
 import com.example.hello.data.source.local.room.model.TweetEntity;
+import com.example.hello.utils.NullChecker;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -29,6 +31,7 @@ import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Single;
 
 public class LocalStorageImpl implements LocalStorage {
+    private static final String TAG = "[LocalStorage]";
     private final Context context;
     private final AppDatabase appDatabase;
 
@@ -57,7 +60,7 @@ public class LocalStorageImpl implements LocalStorage {
             Gson gson = new GsonBuilder().create();
             tweets = gson.fromJson(jsonString, new TypeToken<List<Tweet>>() {
             }.getType());
-            return tweets;
+            return tweets.stream().filter(tweet -> tweet.getError() == null && tweet.getUnknownError() == null).collect(Collectors.toList());
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -91,6 +94,7 @@ public class LocalStorageImpl implements LocalStorage {
                 }));
 
             } catch (Throwable throwable) {
+                Log.e(TAG, "<updateTweets>" + throwable.toString());
                 emitter.onError(throwable);
             }
             emitter.onSuccess(true);
@@ -151,9 +155,9 @@ public class LocalStorageImpl implements LocalStorage {
     private SenderEntity toRoomSender(Sender sender) {
         SenderEntity senderEntity = new SenderEntity();
         senderEntity.id = 0;
-        senderEntity.userName = sender.getUserName();
-        senderEntity.nick = sender.getNick();
-        senderEntity.avatar = sender.getAvatar();
+        senderEntity.userName = NullChecker.nullCheckString(sender.getUserName());
+        senderEntity.nick = NullChecker.nullCheckString(sender.getNick());
+        senderEntity.avatar = NullChecker.nullCheckString(sender.getAvatar());
 
         return senderEntity;
     }

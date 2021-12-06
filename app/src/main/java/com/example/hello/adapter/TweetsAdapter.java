@@ -1,5 +1,6 @@
 package com.example.hello.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,8 +33,11 @@ public class TweetsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         this.mContext = mContext;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setTweets(List<Tweet> tweets) {
-        this.mTweetList = tweets;
+        this.mTweetList.clear();
+        this.mTweetList.addAll(tweets);
+        notifyDataSetChanged();
     }
 
     @Override

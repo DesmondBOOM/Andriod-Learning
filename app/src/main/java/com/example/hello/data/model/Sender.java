@@ -1,7 +1,10 @@
 package com.example.hello.data.model;
 
 
+import com.google.gson.annotations.SerializedName;
+
 public class Sender {
+    @SerializedName("username")
     private String userName;
     private String nick;
     private String avatar;

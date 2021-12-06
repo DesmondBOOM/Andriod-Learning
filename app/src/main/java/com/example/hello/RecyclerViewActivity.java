@@ -60,13 +60,12 @@ public class RecyclerViewActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        tweets -> tweetsAdapter.setTweets(tweets.stream().filter(tweet -> tweet.getError() == null && tweet.getUnknownError() == null).collect(Collectors.toList())),
+                        tweets -> tweetsAdapter.setTweets(tweets),
                         throwable -> Toast.makeText(RecyclerViewActivity.this, throwable.getMessage(), Toast.LENGTH_SHORT).show()
                 );
         compositeDisposable.add(disposable);
 
 //        List<Tweet> tweetList = getTweetsFromAssets();
-//
 //        tweetList = tweetList.stream().filter(tweet -> tweet.getError() == null && tweet.getUnknownError() == null).collect(Collectors.toList());
 //        tweetsAdapter.setTweets(tweetList);
     }
