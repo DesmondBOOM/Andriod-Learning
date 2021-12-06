@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hello.adapter.TweetsAdapter;
 import com.example.hello.data.model.Tweet;
+import com.example.hello.data.source.Repository;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -24,6 +25,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
     List<Tweet> tweetList = new ArrayList<>();
     Gson gson = new GsonBuilder().create();
+    private TweetsAdapter tweetsAdapter;
 
 
     @Override
@@ -31,16 +33,26 @@ public class RecyclerViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recycler_view_layout);
 
+        initUI();
+        setData();
+
+    }
+
+    private void initUI() {
         // Lookup the recyclerview in activity layout
         RecyclerView tweetRecyclerView = findViewById(R.id.tweet_recycler);
+        tweetsAdapter = new TweetsAdapter(getApplicationContext());
+        tweetRecyclerView.setAdapter(tweetsAdapter);
+        tweetRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+    }
+
+    private void setData() {
+        Repository repository = new Repository(this);
         tweetList = getTweetsFromAssets();
 
         tweetList = tweetList.stream().filter(tweet -> tweet.getError() == null && tweet.getUnknownError() == null).collect(Collectors.toList());
-        TweetsAdapter adapter = new TweetsAdapter(tweetList, getApplicationContext());
-        tweetRecyclerView.setAdapter(adapter);
-        tweetRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        tweetsAdapter.setTweets(tweetList);
     }
 
     private List<Tweet> getTweetsFromAssets() {

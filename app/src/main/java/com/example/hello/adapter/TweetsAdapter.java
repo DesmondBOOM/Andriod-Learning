@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.example.hello.R;
 import com.example.hello.data.model.Tweet;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TweetsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -26,9 +27,13 @@ public class TweetsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     List<Tweet> mTweetList;
     Context mContext;
 
-    public TweetsAdapter(List<Tweet> mTweetList, Context mContext) {
-        this.mTweetList = mTweetList;
+    public TweetsAdapter(Context mContext) {
+        this.mTweetList = new ArrayList<>();
         this.mContext = mContext;
+    }
+
+    public void setTweets(List<Tweet> tweets) {
+        this.mTweetList = tweets;
     }
 
     @Override
