@@ -12,12 +12,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.IOException;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
 public class MainActivity extends AppCompatActivity {
 
     private static final int PICK_CONTACT_REQUEST = 1;
@@ -29,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     Button button_6;
     Button button_7;
     Button button_8;
+    Button button_9;
 
     public static final String TAG = "[MainActivity]";
 
@@ -39,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "this is main activity");
         Log.d(TAG, "thread : " + Thread.currentThread().getId());
 
+        initUI();
+    }
+
+    private void initUI() {
         button_1 = findViewById(R.id.button_1);
         button_1.setOnClickListener(v -> openConstraintActivity());
 
@@ -63,6 +62,12 @@ public class MainActivity extends AppCompatActivity {
         button_8 = findViewById(R.id.button_8);
         button_8.setOnClickListener(v -> openRxjavaActivity());
 
+        button_9 = findViewById(R.id.button_9);
+        button_9.setOnClickListener(v -> openSpActivity());
+    }
+
+    private void openSpActivity() {
+        startActivity(new Intent(this, SpActivity.class));
     }
 
     private void openRxjavaActivity() {

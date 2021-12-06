@@ -8,7 +8,7 @@
     <string name="bottom_6">线程</string>
     <string name="bottom_7">Handler</string>
     <string name="bottom_8">rxjava</string>
-    <string name="bottom_9">按钮 9</string>
+    <string name="bottom_9">shared preferences</string>
     <string name="bottom_10">按钮 10</string>
     <string name="practice">Android 练习</string>
     <string name="hello_github">您好!</string>
