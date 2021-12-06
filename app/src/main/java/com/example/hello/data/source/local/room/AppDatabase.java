@@ -14,12 +14,12 @@ import com.example.hello.data.source.local.room.model.TweetEntity;
 
 @Database(entities = {TweetEntity.class, ImageEntity.class, SenderEntity.class, CommentEntity.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
-    public TweetDao tweetDao;
+    public abstract TweetDao tweetDao();
 
-    public ImageDao imageDao;
+    public abstract ImageDao imageDao();
 
-    public SenderDao senderDao;
+    public abstract SenderDao senderDao();
 
-    public CommentDao commentDao;
+    public abstract CommentDao commentDao();
 
 }
