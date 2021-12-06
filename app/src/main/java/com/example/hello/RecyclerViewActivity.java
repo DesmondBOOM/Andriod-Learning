@@ -1,6 +1,7 @@
 package com.example.hello;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hello.adapter.TweetsAdapter;
 import com.example.hello.data.model.Tweet;
-import com.example.hello.data.source.Repository;
+import com.example.hello.utils.Dependency;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -21,18 +22,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 public class RecyclerViewActivity extends AppCompatActivity {
 
-    List<Tweet> tweetList = new ArrayList<>();
-    Gson gson = new GsonBuilder().create();
+    private final Gson gson = new GsonBuilder().create();
     private TweetsAdapter tweetsAdapter;
+    private Dependency dependency;
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recycler_view_layout);
-
+        dependency = ((HelloApp) getApplication()).getDependency();
         initUI();
         setData();
 
@@ -48,11 +55,20 @@ public class RecyclerViewActivity extends AppCompatActivity {
     }
 
     private void setData() {
-        Repository repository = new Repository(this);
-        tweetList = getTweetsFromAssets();
+        Disposable disposable = dependency.getDataSource()
+                .fetchTweets()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        tweets -> tweetsAdapter.setTweets(tweets.stream().filter(tweet -> tweet.getError() == null && tweet.getUnknownError() == null).collect(Collectors.toList())),
+                        throwable -> Toast.makeText(RecyclerViewActivity.this, throwable.getMessage(), Toast.LENGTH_SHORT).show()
+                );
+        compositeDisposable.add(disposable);
 
-        tweetList = tweetList.stream().filter(tweet -> tweet.getError() == null && tweet.getUnknownError() == null).collect(Collectors.toList());
-        tweetsAdapter.setTweets(tweetList);
+//        List<Tweet> tweetList = getTweetsFromAssets();
+//
+//        tweetList = tweetList.stream().filter(tweet -> tweet.getError() == null && tweet.getUnknownError() == null).collect(Collectors.toList());
+//        tweetsAdapter.setTweets(tweetList);
     }
 
     private List<Tweet> getTweetsFromAssets() {
