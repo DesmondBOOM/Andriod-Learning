@@ -26,5 +26,8 @@
     <string name="footer_hint">The END</string>
     <string name="first">First</string>
     <string name="second">Second</string>
+    <string name="i_know">知道了</string>
+    <string name="hint_info">提示信息：\n 点击知道了不再提示</string>
+    <string name="welcome_back">欢迎您回来</string>
 
 </resources>

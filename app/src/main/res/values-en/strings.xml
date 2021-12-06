@@ -27,5 +27,8 @@
     <string name="footer_hint">The END</string>
     <string name="first">First</string>
     <string name="second">Second</string>
+    <string name="i_know">I know</string>
+    <string name="hint_info">Info：\n Click "I know" no longer prompts</string>
+    <string name="welcome_back">Welcome back!</string>
 
 </resources>
