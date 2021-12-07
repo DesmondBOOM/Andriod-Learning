@@ -1,4 +1,4 @@
-package com.example.hello.data.source.network;
+package com.example.hello.data.source.remote;
 
 import com.example.hello.data.model.Tweet;
 import com.google.gson.Gson;

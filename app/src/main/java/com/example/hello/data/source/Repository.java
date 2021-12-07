@@ -1,21 +1,18 @@
 package com.example.hello.data.source;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.example.hello.data.model.Tweet;
 import com.example.hello.data.source.local.LocalStorage;
 import com.example.hello.data.source.local.LocalStorageImpl;
-import com.example.hello.data.source.network.Network;
-import com.example.hello.data.source.network.NetworkImpl;
+import com.example.hello.data.source.remote.Network;
+import com.example.hello.data.source.remote.NetworkImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
-import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class Repository implements DataSource {
