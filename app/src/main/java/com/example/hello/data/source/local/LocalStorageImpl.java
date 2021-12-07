@@ -74,20 +74,20 @@ public class LocalStorageImpl implements LocalStorage {
             try {
                 appDatabase.clearAllTables();
                 appDatabase.runInTransaction(() -> tweets.forEach(tweet -> {
-                    TweetEntity tweetEntity = toRoomTweet(tweet);
+                    TweetEntity tweetEntity = DataTransUtils.toRoomTweet(tweet);
                     tweetEntity.senderId = insertRoomSender(tweet.getSender());
                     long tweetId = appDatabase.tweetDao().insert(tweetEntity).blockingGet();
 
                     if (tweet.getImages() != null) {
                         tweet.getImages().forEach(image -> {
-                            ImageEntity imageEntity = toRoomImage(image, tweetId);
+                            ImageEntity imageEntity = DataTransUtils.toRoomImage(image, tweetId);
                             appDatabase.imageDao().insert(imageEntity).blockingGet();
                         });
                     }
 
                     if (tweet.getComments() != null) {
                         tweet.getComments().forEach(comment -> {
-                            CommentEntity commentEntity = toRoomComment(comment, tweetId, insertRoomSender(comment.getSender()));
+                            CommentEntity commentEntity = DataTransUtils.toRoomComment(comment, tweetId, insertRoomSender(comment.getSender()));
                             appDatabase.commentDao().insert(commentEntity).blockingGet();
                         });
                     }
@@ -111,10 +111,15 @@ public class LocalStorageImpl implements LocalStorage {
 
                     List<Tweet> tweets = new ArrayList<>();
                     for (TweetEntity tweetEntity : tweetEntities) {
-                        Tweet tweet = toTweet(tweetEntity);
-                        senderEntities.stream().filter(senderEntity1 -> senderEntity1.id == tweetEntity.senderId).map(this::toSender).findFirst().ifPresent(tweet::setSender);
+                        Tweet tweet = DataTransUtils.toTweet(tweetEntity);
+                        senderEntities.stream().filter(senderEntity1 -> senderEntity1.id == tweetEntity.senderId).map(DataTransUtils::toSender).findFirst().ifPresent(tweet::setSender);
                         tweet.setImages(imageEntities.stream().filter(imageEntity -> imageEntity.id == tweetEntity.id).map(imageEntity -> new Image(imageEntity.url)).collect(Collectors.toList()));
-                        tweet.setComments(commentEntities.stream().filter(commentEntity -> commentEntity.tweetId == tweetEntity.id).map(commentEntity -> new Comment(commentEntity.content, senderEntities.stream().filter(senderEntity -> senderEntity.id == commentEntity.senderId).map(this::toSender).findFirst().orElse(null))).collect(Collectors.toList()));
+                        tweet.setComments(commentEntities.stream()
+                                .filter(commentEntity -> commentEntity.tweetId == tweetEntity.id)
+                                .map(commentEntity -> new Comment(
+                                        commentEntity.content,
+                                        senderEntities.stream().filter(senderEntity -> senderEntity.id == commentEntity.senderId).map(DataTransUtils::toSender).findFirst().orElse(null))).collect(Collectors.toList())
+                        );
                         tweets.add(tweet);
                     }
 
@@ -122,62 +127,63 @@ public class LocalStorageImpl implements LocalStorage {
                 });
     }
 
-
-    private Tweet toTweet(TweetEntity tweetEntity) {
-        Tweet tweet = new Tweet();
-        tweet.setContent(tweetEntity.content);
-
-        return tweet;
-    }
-
-    private Sender toSender(SenderEntity senderEntity) {
-        Sender sender = new Sender();
-        sender.setUserName(senderEntity.userName);
-        sender.setNick(senderEntity.nick);
-        sender.setAvatar(senderEntity.avatar);
-
-        return sender;
-    }
-
-    private TweetEntity toRoomTweet(Tweet tweet) {
-        TweetEntity tweetEntity = new TweetEntity();
-        tweetEntity.id = 0;
-        tweetEntity.content = tweet.getContent();
-
-        return tweetEntity;
-    }
-
-    private long insertRoomSender(Sender sender) {
-        SenderEntity senderEntity = toRoomSender(sender);
+    public long insertRoomSender(Sender sender) {
+        SenderEntity senderEntity = DataTransUtils.toRoomSender(sender);
         return appDatabase.senderDao().insert(senderEntity).blockingGet();
     }
 
-    private SenderEntity toRoomSender(Sender sender) {
-        SenderEntity senderEntity = new SenderEntity();
-        senderEntity.id = 0;
-        senderEntity.userName = NullChecker.nullCheckString(sender.getUserName());
-        senderEntity.nick = NullChecker.nullCheckString(sender.getNick());
-        senderEntity.avatar = NullChecker.nullCheckString(sender.getAvatar());
+    private static class DataTransUtils {
+        public static Tweet toTweet(TweetEntity tweetEntity) {
+            Tweet tweet = new Tweet();
+            tweet.setContent(tweetEntity.content);
 
-        return senderEntity;
-    }
+            return tweet;
+        }
 
-    private ImageEntity toRoomImage(Image image, long tweetId) {
-        ImageEntity imageEntity = new ImageEntity();
-        imageEntity.id = 0;
-        imageEntity.tweetId = tweetId;
-        imageEntity.url = image.getUrl();
+        public static Sender toSender(SenderEntity senderEntity) {
+            Sender sender = new Sender();
+            sender.setUserName(senderEntity.userName);
+            sender.setNick(senderEntity.nick);
+            sender.setAvatar(senderEntity.avatar);
 
-        return imageEntity;
-    }
+            return sender;
+        }
 
-    private CommentEntity toRoomComment(Comment comment, long tweetId, long senderId) {
-        CommentEntity commentEntity = new CommentEntity();
-        commentEntity.id = 0;
-        commentEntity.tweetId = tweetId;
-        commentEntity.senderId = senderId;
-        commentEntity.content = comment.getContent();
+        public static TweetEntity toRoomTweet(Tweet tweet) {
+            TweetEntity tweetEntity = new TweetEntity();
+            tweetEntity.id = 0;
+            tweetEntity.content = tweet.getContent();
 
-        return commentEntity;
+            return tweetEntity;
+        }
+
+        public static SenderEntity toRoomSender(Sender sender) {
+            SenderEntity senderEntity = new SenderEntity();
+            senderEntity.id = 0;
+            senderEntity.userName = NullChecker.nullCheckString(sender.getUserName());
+            senderEntity.nick = NullChecker.nullCheckString(sender.getNick());
+            senderEntity.avatar = NullChecker.nullCheckString(sender.getAvatar());
+
+            return senderEntity;
+        }
+
+        public static ImageEntity toRoomImage(Image image, long tweetId) {
+            ImageEntity imageEntity = new ImageEntity();
+            imageEntity.id = 0;
+            imageEntity.tweetId = tweetId;
+            imageEntity.url = image.getUrl();
+
+            return imageEntity;
+        }
+
+        public static CommentEntity toRoomComment(Comment comment, long tweetId, long senderId) {
+            CommentEntity commentEntity = new CommentEntity();
+            commentEntity.id = 0;
+            commentEntity.tweetId = tweetId;
+            commentEntity.senderId = senderId;
+            commentEntity.content = comment.getContent();
+
+            return commentEntity;
+        }
     }
 }
