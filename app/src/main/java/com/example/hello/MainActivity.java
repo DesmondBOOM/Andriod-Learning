@@ -12,6 +12,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.hello.activity.ConstraintActivity;
+import com.example.hello.activity.HandlerActivity;
+import com.example.hello.activity.LoginActivity;
+import com.example.hello.activity.MyFragmentActivity;
+import com.example.hello.activity.RecyclerViewActivity;
+import com.example.hello.activity.RxjavaActivity;
+import com.example.hello.activity.SpActivity;
+import com.example.hello.activity.ThreadActivity;
 import com.example.hello.utils.SharedPreferencesUtils;
 
 public class MainActivity extends AppCompatActivity {

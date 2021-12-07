@@ -1,4 +1,4 @@
-package com.example.hello;
+package com.example.hello.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.example.hello.MainActivity;
+import com.example.hello.R;
 import com.example.hello.utils.SharedPreferencesUtils;
 
 public class SpActivity extends AppCompatActivity {

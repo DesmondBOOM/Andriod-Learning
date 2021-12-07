@@ -1,4 +1,4 @@
-package com.example.hello;
+package com.example.hello.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,8 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.example.hello.R;
 
 public class HandlerActivity extends AppCompatActivity {
 

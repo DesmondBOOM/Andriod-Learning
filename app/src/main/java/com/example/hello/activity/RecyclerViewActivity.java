@@ -1,4 +1,4 @@
-package com.example.hello;
+package com.example.hello.activity;
 
 import android.os.Bundle;
 import android.widget.Toast;
@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.hello.R;
 import com.example.hello.adapter.TweetsAdapter;
 import com.example.hello.utils.Dependency;
 

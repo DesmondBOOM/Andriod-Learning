@@ -1,9 +1,11 @@
-package com.example.hello;
+package com.example.hello.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+
+import com.example.hello.R;
 
 public class LoginActivity extends AppCompatActivity {
 

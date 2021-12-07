@@ -1,9 +1,11 @@
-package com.example.hello;
+package com.example.hello.activity;
 
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.hello.R;
 
 public class PickUpContactActivity extends AppCompatActivity {
 

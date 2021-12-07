@@ -1,4 +1,4 @@
-package com.example.hello;
+package com.example.hello.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
 import android.widget.Button;
+
+import com.example.hello.R;
 
 public class ThreadActivity extends AppCompatActivity {
 
