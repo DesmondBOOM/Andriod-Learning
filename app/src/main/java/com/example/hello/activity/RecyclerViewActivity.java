@@ -1,15 +1,22 @@
 package com.example.hello.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hello.R;
 import com.example.hello.adapter.TweetsAdapter;
+import com.example.hello.data.model.Tweet;
 import com.example.hello.utils.Dependency;
+import com.example.hello.viewmodel.TweetsViewModel;
+
+import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -29,8 +36,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
         setContentView(R.layout.recycler_view_layout);
         dependency = ((HelloApp) getApplication()).getDependency();
         initUI();
-        setData();
-
+        initModel();
     }
 
     private void initUI() {
@@ -39,7 +45,14 @@ public class RecyclerViewActivity extends AppCompatActivity {
         tweetsAdapter = new TweetsAdapter(getApplicationContext());
         tweetRecyclerView.setAdapter(tweetsAdapter);
         tweetRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
 
+    private void initModel() {
+        TweetsViewModel model = new ViewModelProvider(RecyclerViewActivity.this).get(TweetsViewModel.class);
+        model.setDependency(dependency);
+        model.tweetListLiveData.observe(this, tweets -> tweetsAdapter.setTweets(tweets));
+
+        model.setData(throwable -> Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_SHORT).show());
     }
 
     private void setData() {
@@ -49,8 +62,14 @@ public class RecyclerViewActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         tweets -> tweetsAdapter.setTweets(tweets),
-                        throwable -> Toast.makeText(RecyclerViewActivity.this, throwable.getMessage(), Toast.LENGTH_SHORT).show()
+                        throwable -> Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_SHORT).show()
                 );
         compositeDisposable.add(disposable);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        compositeDisposable.clear();
     }
 }
