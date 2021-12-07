@@ -5,22 +5,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import org.intellij.lang.annotations.Flow;
-import org.reactivestreams.Publisher;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
-import io.reactivex.rxjava3.annotations.NonNull;
-import io.reactivex.rxjava3.core.Flowable;
-import io.reactivex.rxjava3.core.FlowableEmitter;
-import io.reactivex.rxjava3.core.FlowableOnSubscribe;
 import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.core.SingleEmitter;
 import io.reactivex.rxjava3.core.SingleOnSubscribe;
-import io.reactivex.rxjava3.functions.Function;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -41,7 +31,8 @@ public class NetworkImpl implements Network {
             }
         }).map(jsonString -> {
             Gson gson = new GsonBuilder().create();
-            return gson.fromJson(jsonString, new TypeToken<List<Tweet>>() {}.getType());
+            List<Tweet> tweetList = gson.fromJson(jsonString, new TypeToken<List<Tweet>>() {}.getType());
+            return tweetList.stream().filter(tweet -> tweet.getError() == null && tweet.getUnknownError() == null).collect(Collectors.toList());
         });
     }
 }
