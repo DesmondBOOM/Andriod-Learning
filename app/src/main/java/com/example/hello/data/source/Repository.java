@@ -33,18 +33,11 @@ public class Repository implements DataSource {
     @Override
     public Flowable<List<Tweet>> fetchTweets() {
 //        List<Tweet> tweets = localStorage.getTweetsFromAssets();
-        List<Tweet> tweets = new ArrayList<>();
         network.getTweetsFromNetwork(TWEETS_SOURCE)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        tweetList -> {
-                            tweets.clear();
-                            tweets.addAll(tweetList);
-                            Log.d("[Repository]", "tweets:" + tweets.toString());
-                            localStorage.updateTweets(tweets).subscribeOn(Schedulers.io());
-                        },
-
+                        tweetList -> localStorage.updateTweets(tweetList).subscribeOn(Schedulers.io()),
                         throwable -> Toast.makeText(context, throwable.toString(), Toast.LENGTH_SHORT).show()
                 );
         return localStorage.getTweets();
