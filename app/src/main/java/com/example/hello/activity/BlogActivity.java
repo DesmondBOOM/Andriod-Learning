@@ -18,7 +18,6 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout;
 
 public class BlogActivity extends AppCompatActivity {
 
-
     private Dependency dependency;
     private MomentsAdapter momentsAdapter;
 

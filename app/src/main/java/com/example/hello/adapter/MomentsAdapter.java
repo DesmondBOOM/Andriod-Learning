@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -84,14 +85,12 @@ public class MomentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         ((MomentViewHolder) holder).imagesGrid.setLayoutManager(new GridLayoutManager(mContext, 3));
         ((MomentViewHolder) holder).imagesGrid.setVisibility(View.VISIBLE);
         imageAdapter.setImageUrls(tweet.getImages().stream().map(Image::getUrl).collect(Collectors.toList()));
-        Log.d("[MomentAdapter] ", "position: " + position);
-        Log.d("[MomentAdapter] ", "tweet org: " + mTweetList.get(position));
-        Log.d("[MomentAdapter] ", "imageURLs org: " + mTweetList.get(position).getImages());
-        Log.d("[MomentAdapter] ", "tweet: " + tweet);
-        Log.d("[MomentAdapter] ", "imageURLs: " + tweet.getImages());
-        Log.d("[MomentAdapter] ", "imageURLs: " + tweet.getImages().stream().map(Image::getUrl).collect(Collectors.toList()));
-        Log.d("[MomentAdapter] ", "imageURLs count: " + imageAdapter.getItemCount());
 
+        CommentAdapter commentAdapter = new CommentAdapter(mContext);
+        ((MomentViewHolder) holder).commentsList.setAdapter(commentAdapter);
+        ((MomentViewHolder) holder).commentsList.setLayoutManager(new LinearLayoutManager(mContext));
+        ((MomentViewHolder) holder).commentsList.setVisibility(View.VISIBLE);
+        commentAdapter.setComment(tweet.getComments());
 
     }
 
