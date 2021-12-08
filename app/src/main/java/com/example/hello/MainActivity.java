@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.hello.activity.BlogActivity;
 import com.example.hello.activity.ConstraintActivity;
 import com.example.hello.activity.HandlerActivity;
 import com.example.hello.activity.LoginActivity;

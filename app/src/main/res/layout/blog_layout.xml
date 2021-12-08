@@ -14,7 +14,9 @@
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/blogRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:background="@color/gray_light" />
 
     <com.scwang.smart.refresh.footer.ClassicsFooter
             android:id="@+id/blogFooter"
