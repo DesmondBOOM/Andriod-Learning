@@ -10,5 +10,10 @@ public class BlogActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.blog_layout);
+        initUI();
+    }
+
+    private void initUI() {
+
     }
 }
