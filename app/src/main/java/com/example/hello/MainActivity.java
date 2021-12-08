@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     Button button_7;
     Button button_8;
     Button button_9;
+    Button button_10;
 
     public static final String TAG = "[MainActivity]";
 
@@ -73,6 +74,12 @@ public class MainActivity extends AppCompatActivity {
         button_8.setOnClickListener(v -> openRxjavaActivity());
         button_9 = findViewById(R.id.button_9);
         button_9.setOnClickListener(v -> openSpActivity());
+        button_10 = findViewById(R.id.button_10);
+        button_10.setOnClickListener(v -> openBlogActivity());
+    }
+
+    private void openBlogActivity() {
+        startActivity(new Intent(this, BlogActivity.class));
     }
 
     private void openSpActivity() {

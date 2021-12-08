@@ -15,6 +15,9 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+                android:name=".BlogActivity"
+                android:exported="false" />
+        <activity
                 android:name=".activity.SpActivity"
                 android:exported="false" />
         <activity
