@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:overScrollMode="never"
-            android:background="@color/gray_light" />
+            android:background="@color/white" />
 
     <com.scwang.smart.refresh.footer.ClassicsFooter
             android:id="@+id/blog_footer"

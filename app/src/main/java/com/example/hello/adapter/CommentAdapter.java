@@ -2,6 +2,10 @@ package com.example.hello.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,9 +60,17 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         // Get the data model based on position
         Comment comment = mCommentList.get(position);
+        String senderName = comment.getSender().getNick();
+        String commentContent = comment.getContent();
+        SpannableStringBuilder builder = new SpannableStringBuilder();
+        builder.append(senderName).append(" : ");
+        ForegroundColorSpan colorSpan = new ForegroundColorSpan(mContext.getColor(R.color.blue));
+        builder.setSpan(colorSpan, 0, senderName.length() + 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        builder.append(commentContent);
+
 
         // Set item views based on your views and data model
-        ((MomentCommentViewHolder) holder).comment.setText(comment.getContent());
+        ((MomentCommentViewHolder) holder).comment.setText(builder);
 
     }
 
