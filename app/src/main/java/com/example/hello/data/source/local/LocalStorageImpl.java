@@ -112,8 +112,14 @@ public class LocalStorageImpl implements LocalStorage {
                     List<Tweet> tweets = new ArrayList<>();
                     for (TweetEntity tweetEntity : tweetEntities) {
                         Tweet tweet = DataTransUtils.toTweet(tweetEntity);
-                        senderEntities.stream().filter(senderEntity1 -> senderEntity1.id == tweetEntity.senderId).map(DataTransUtils::toSender).findFirst().ifPresent(tweet::setSender);
-                        tweet.setImages(imageEntities.stream().filter(imageEntity -> imageEntity.id == tweetEntity.id).map(imageEntity -> new Image(imageEntity.url)).collect(Collectors.toList()));
+                        senderEntities.stream()
+                                .filter(senderEntity1 -> senderEntity1.id == tweetEntity.senderId)
+                                .map(DataTransUtils::toSender)
+                                .findFirst().ifPresent(tweet::setSender);
+                        tweet.setImages(imageEntities.stream()
+                                .filter(imageEntity -> imageEntity.tweetId == tweetEntity.id)
+                                .map(imageEntity -> new Image(imageEntity.url))
+                                .collect(Collectors.toList()));
                         tweet.setComments(commentEntities.stream()
                                 .filter(commentEntity -> commentEntity.tweetId == tweetEntity.id)
                                 .map(commentEntity -> new Comment(

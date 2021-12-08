@@ -2,6 +2,7 @@ package com.example.hello.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -25,7 +27,6 @@ public class MomentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private static final int sITEM_TYPE_NORMAL = 0;
     private static final int sITEM_TYPE_HEADER = 1;
     private static final int sITEM_TYPE_FOOTER = 2;
-    private static final int sITEM_TYPE_EMPTY = 3;
 
     List<Tweet> mTweetList;
     Context mContext;
@@ -79,7 +80,18 @@ public class MomentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         Glide.with(mContext).load(tweet.getSender().getAvatar()).into(((MomentViewHolder) holder).senderAvatar);
 
         ImageAdapter imageAdapter = new ImageAdapter(mContext);
+        ((MomentViewHolder) holder).imagesGrid.setAdapter(imageAdapter);
+        ((MomentViewHolder) holder).imagesGrid.setLayoutManager(new GridLayoutManager(mContext, 3));
+        ((MomentViewHolder) holder).imagesGrid.setVisibility(View.VISIBLE);
         imageAdapter.setImageUrls(tweet.getImages().stream().map(Image::getUrl).collect(Collectors.toList()));
+        Log.d("[MomentAdapter] ", "position: " + position);
+        Log.d("[MomentAdapter] ", "tweet org: " + mTweetList.get(position));
+        Log.d("[MomentAdapter] ", "imageURLs org: " + mTweetList.get(position).getImages());
+        Log.d("[MomentAdapter] ", "tweet: " + tweet);
+        Log.d("[MomentAdapter] ", "imageURLs: " + tweet.getImages());
+        Log.d("[MomentAdapter] ", "imageURLs: " + tweet.getImages().stream().map(Image::getUrl).collect(Collectors.toList()));
+        Log.d("[MomentAdapter] ", "imageURLs count: " + imageAdapter.getItemCount());
+
 
     }
 

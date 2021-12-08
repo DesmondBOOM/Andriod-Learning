@@ -2,6 +2,7 @@ package com.example.hello.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +44,7 @@ public class ImageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View tweetView = inflater.inflate(R.layout.blog_custom_row, parent, false);
+        View tweetView = inflater.inflate(R.layout.blog_image_grid, parent, false);
 
         return new MomentImageViewHolder(tweetView);
     }
@@ -57,6 +58,7 @@ public class ImageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         String imageUrl = mImageUrls.get(position);
 
         // Set item views based on your views and data model
+        Log.d("[imageAdapter] ", imageUrl);
         Glide.with(mContext).load(imageUrl).into(((MomentImageViewHolder) holder).image);
 
 

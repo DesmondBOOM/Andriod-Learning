@@ -3,6 +3,7 @@ package com.example.hello.viewmodel;
 import android.content.Context;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.collection.ArraySet;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -31,7 +32,7 @@ public class TweetsViewModel extends ViewModel {
         this.dependency = dependency;
     }
     
-    public void setData(Action<Throwable> errorHandler) {
+    public void setData(@NonNull Action<Throwable> errorHandler) {
         Disposable disposable = dependency.getDataSource()
                 .fetchTweets()
                 .subscribeOn(Schedulers.io())
