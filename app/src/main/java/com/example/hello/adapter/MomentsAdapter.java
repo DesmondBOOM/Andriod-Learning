@@ -56,7 +56,7 @@ public class MomentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     public boolean isHead(int position) {
-        return HEAD_COUNT != 0 && position == 0;
+        return HEAD_COUNT != 0 && position < 0;
     }
 
     public boolean isFoot(int position) {
@@ -101,7 +101,7 @@ public class MomentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (type == sITEM_TYPE_HEADER) {
             ((UserViewHolder) holder).userName.setText(user.getNick());
             Glide.with(mContext).load(user.getAvatar()).into(((UserViewHolder) holder).userAvatar);
-            Glide.with(mContext).load(user.getProfileImage()).into(((UserViewHolder) holder).userProfile);
+            Glide.with(mContext).load("https://thoughtworks-mobile-2018.herokuapp.com/images/tweets/016.jpeg").into(((UserViewHolder) holder).userProfile);
             return;
         } else if (type == sITEM_TYPE_FOOTER) {
             return;

@@ -13,7 +13,8 @@
         <com.scwang.smart.refresh.header.ClassicsHeader
                 android:id="@+id/blog_header"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"/>
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/blog_recycler_view"

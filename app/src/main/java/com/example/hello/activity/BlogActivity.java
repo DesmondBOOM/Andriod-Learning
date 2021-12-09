@@ -1,8 +1,13 @@
 package com.example.hello.activity;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.AttributeSet;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,7 +20,11 @@ import com.example.hello.utils.StatusBarUtils;
 import com.example.hello.viewmodel.TweetsViewModel;
 import com.scwang.smart.refresh.footer.ClassicsFooter;
 import com.scwang.smart.refresh.header.ClassicsHeader;
+import com.scwang.smart.refresh.layout.api.RefreshHeader;
+import com.scwang.smart.refresh.layout.api.RefreshKernel;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
+import com.scwang.smart.refresh.layout.constant.RefreshState;
+import com.scwang.smart.refresh.layout.constant.SpinnerStyle;
 
 public class BlogActivity extends AppCompatActivity {
 
@@ -35,7 +44,7 @@ public class BlogActivity extends AppCompatActivity {
         StatusBarUtils.setTransparent(this);
 
         RefreshLayout refreshLayout = findViewById(R.id.blog_refresh_layout);
-        refreshLayout.setRefreshHeader(new ClassicsHeader(this));
+        refreshLayout.setRefreshHeader(new MomentsHeader(this));
         refreshLayout.setRefreshFooter(new ClassicsFooter(this));
 
         RecyclerView momentRecyclerView = findViewById(R.id.blog_recycler_view);
@@ -55,4 +64,15 @@ public class BlogActivity extends AppCompatActivity {
         model.setUserData(throwable -> Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_SHORT).show());
     }
 
+    private class MomentsHeader extends ClassicsHeader {
+
+
+        public MomentsHeader(Context context) {
+            super(context);
+        }
+
+        public MomentsHeader(Context context, AttributeSet attrs) {
+            super(context, attrs);
+        }
+    }
 }

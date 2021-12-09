@@ -41,5 +41,6 @@
     <string name="default_comment" translatable="false">default</string>
     <string name="moment_background">moment background</string>
     <string name="user_profile_image">user profile image</string>
+    <string name="refresh_image">refresh image</string>
 
 </resources>
