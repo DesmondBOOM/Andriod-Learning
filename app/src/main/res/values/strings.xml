@@ -40,5 +40,6 @@
     <string name="tweet_image" translatable="false">tweet images</string>
     <string name="default_comment" translatable="false">default</string>
     <string name="moment_background">moment background</string>
+    <string name="user_profile_image">user profile image</string>
 
 </resources>

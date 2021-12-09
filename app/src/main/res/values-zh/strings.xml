@@ -30,5 +30,6 @@
     <string name="hint_info">提示信息：\n 点击知道了不再提示</string>
     <string name="welcome_back">欢迎您回来</string>
     <string name="moment_background">moment background</string>
+    <string name="user_profile_image">user profile image</string>
 
 </resources>

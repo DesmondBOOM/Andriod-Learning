@@ -101,10 +101,9 @@ public class MomentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (type == sITEM_TYPE_HEADER) {
             ((UserViewHolder) holder).userName.setText(user.getNick());
             Glide.with(mContext).load(user.getAvatar()).into(((UserViewHolder) holder).userAvatar);
+            Glide.with(mContext).load(user.getProfileImage()).into(((UserViewHolder) holder).userProfile);
             return;
-        }
-
-        if (type == sITEM_TYPE_FOOTER) {
+        } else if (type == sITEM_TYPE_FOOTER) {
             return;
         }
 
@@ -136,7 +135,6 @@ public class MomentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return mTweetList.size();
     }
 
-
     public static class MomentViewHolder extends RecyclerView.ViewHolder {
         public TextView senderName;
         public TextView contentText;
@@ -157,11 +155,13 @@ public class MomentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public static class UserViewHolder extends RecyclerView.ViewHolder {
         public TextView userName;
         public ImageView userAvatar;
+        public ImageView userProfile;
 
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
             userName = itemView.findViewById(R.id.blog_user_name);
             userAvatar = itemView.findViewById(R.id.blog_user_avatar);
+            userProfile = itemView.findViewById(R.id.profile_image);
         }
     }
 }
