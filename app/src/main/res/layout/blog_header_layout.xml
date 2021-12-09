@@ -34,11 +34,10 @@
             android:text="@string/username"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginEnd="15dp"
             app:layout_constraintEnd_toStartOf="@id/blog_user_avatar"
             app:layout_constraintTop_toTopOf="@id/blog_user_avatar"
             app:layout_constraintBottom_toBottomOf="@id/blog_user_avatar"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginBottom="15dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
