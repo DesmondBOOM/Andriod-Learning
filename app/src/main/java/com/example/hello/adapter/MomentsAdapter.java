@@ -29,8 +29,8 @@ public class MomentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private static final int sITEM_TYPE_HEADER = 1;
     private static final int sITEM_TYPE_FOOTER = 2;
 
-    private final static int HEAD_COUNT = 1;
-    private final static int FOOT_COUNT = 0;
+    private final int HEAD_COUNT = 1;
+    private final int FOOT_COUNT = 0;
 
     List<Tweet> mTweetList;
     User user;
@@ -56,11 +56,11 @@ public class MomentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     public boolean isHead(int position) {
-        return HEAD_COUNT != 0 && position < 0;
+        return HEAD_COUNT != 0 && position < HEAD_COUNT;
     }
 
     public boolean isFoot(int position) {
-        return FOOT_COUNT != 0 && position == mTweetList.size() + HEAD_COUNT;
+        return FOOT_COUNT != 0 && position >= mTweetList.size() + HEAD_COUNT;
     }
 
     @Override
@@ -108,7 +108,7 @@ public class MomentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
 
         // Get the data model based on position
-        Tweet tweet = mTweetList.get(position);
+        Tweet tweet = mTweetList.get(position - HEAD_COUNT);
 
         // Set item views based on your views and data model
         ((MomentViewHolder) holder).senderName.setText(tweet.getSender() == null ? "" : tweet.getSender().getNick());
@@ -132,7 +132,7 @@ public class MomentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     // Returns the total count of items in the list
     @Override
     public int getItemCount() {
-        return mTweetList.size();
+        return mTweetList.size() + HEAD_COUNT + FOOT_COUNT;
     }
 
     public static class MomentViewHolder extends RecyclerView.ViewHolder {
