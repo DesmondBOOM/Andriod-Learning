@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.example.hello.data.model.Tweet;
+import com.example.hello.data.model.User;
 import com.example.hello.data.source.local.LocalStorage;
 import com.example.hello.data.source.local.LocalStorageImpl;
 import com.example.hello.data.source.remote.Network;
@@ -13,11 +14,13 @@ import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class Repository implements DataSource {
 
     public static final String TWEETS_SOURCE = "https://thoughtworks-mobile-2018.herokuapp.com/user/jsmith/tweets";
+    public static final String USER_SOURCE = "https://thoughtworks-mobile-2018.herokuapp.com/user/jsmith";
     private final LocalStorage localStorage;
     private final Network network = new NetworkImpl();
     private final Context context;
@@ -30,7 +33,7 @@ public class Repository implements DataSource {
     @Override
     public Flowable<List<Tweet>> fetchTweets() {
 //        List<Tweet> tweets = localStorage.getTweetsFromAssets();
-        network.getTweetsFromNetwork(TWEETS_SOURCE)
+        network.getTweetsFromRemote(TWEETS_SOURCE)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -38,5 +41,10 @@ public class Repository implements DataSource {
                         throwable -> Toast.makeText(context, throwable.toString(), Toast.LENGTH_SHORT).show()
                 );
         return localStorage.getTweets();
+    }
+
+    @Override
+    public Single<User> fetchUser() {
+        return network.getUserFromRemote(USER_SOURCE);
     }
 }

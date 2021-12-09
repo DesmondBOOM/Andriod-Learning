@@ -46,8 +46,9 @@ public class BlogActivity extends AppCompatActivity {
         TweetsViewModel model = new ViewModelProvider(this).get(TweetsViewModel.class);
         model.setDependency(dependency);
         model.tweetListLiveData.observe(this, tweets -> momentsAdapter.setTweets(tweets));
+        model.userLiveData.observe(this, user -> momentsAdapter.setUser(user));
 
-        model.setData(throwable -> Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_SHORT).show());
+        model.setTweetData(throwable -> Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_SHORT).show());
     }
 
 }

@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.hello.activity.HelloApp;
 import com.example.hello.activity.RecyclerViewActivity;
 import com.example.hello.data.model.Tweet;
+import com.example.hello.data.model.User;
 import com.example.hello.functors.Action;
 import com.example.hello.utils.Dependency;
 
@@ -27,12 +28,13 @@ public class TweetsViewModel extends ViewModel {
     private Dependency dependency;
 
     public MutableLiveData<List<Tweet>> tweetListLiveData = new MutableLiveData<>();
+    public MutableLiveData<User> userLiveData = new MutableLiveData<>();
 
     public void setDependency(Dependency dependency) {
         this.dependency = dependency;
     }
     
-    public void setData(@NonNull Action<Throwable> errorHandler) {
+    public void setTweetData(@NonNull Action<Throwable> errorHandler) {
         Disposable disposable = dependency.getDataSource()
                 .fetchTweets()
                 .subscribeOn(Schedulers.io())
@@ -40,11 +42,21 @@ public class TweetsViewModel extends ViewModel {
                 .subscribe(
                         tweets -> tweetListLiveData.postValue(tweets),
                         errorHandler::invoke
-//                        throwable -> Toast.makeText(RecyclerViewActivity.this, throwable.getMessage(), Toast.LENGTH_SHORT).show()
                 );
         compositeDisposable.add(disposable);
     }
 
+    public void setUserData(@NonNull Action<Throwable> errorHandler) {
+        Disposable disposable = dependency.getDataSource()
+                .fetchUser()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        user -> userLiveData.postValue(user),
+                        errorHandler::invoke
+                );
+        compositeDisposable.add(disposable);
+    }
 
     @Override
     protected void onCleared() {
